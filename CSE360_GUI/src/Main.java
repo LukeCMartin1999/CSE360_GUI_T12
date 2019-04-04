@@ -39,7 +39,7 @@ public class Main extends Application implements EventHandler <ActionEvent> {
 		
 		if(event.getSource() == addItem) 
 		{ 			
-			System.out.println("Add Some item to the list");
+			System.out.println("Add New item to the list");
 			
 		} 		
 		
