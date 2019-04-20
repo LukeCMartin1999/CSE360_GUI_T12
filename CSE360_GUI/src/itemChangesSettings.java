@@ -6,6 +6,8 @@ import org.eclipse.wb.swt.SWTResourceManager;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 
 public class itemChangesSettings {
 
@@ -18,7 +20,7 @@ public class itemChangesSettings {
 	 * Launch the application.
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void itemChangesSettings() {
 		try {
 			itemChangesSettings window = new itemChangesSettings();
 			window.open();
@@ -44,6 +46,7 @@ public class itemChangesSettings {
 
 	/**
 	 * Create contents of the window.
+	 * @wbp.parser.entryPoint
 	 */
 	protected void createContents() {
 		shell = new Shell();
@@ -100,6 +103,14 @@ public class itemChangesSettings {
 		btnInProgress.setBounds(181, 327, 103, 21);
 		
 		Button buttonExit = new Button(shell, SWT.NONE);
+		buttonExit.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				shell.dispose();
+				mainMenu mainMenuPanel = new mainMenu();
+				mainMenuPanel.open();
+			}
+		});
 		buttonExit.setText("Exit");
 		buttonExit.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
 		buttonExit.setBounds(188, 434, 124, 34);

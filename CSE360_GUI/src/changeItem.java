@@ -5,6 +5,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 
 public class changeItem {
 
@@ -14,7 +16,7 @@ public class changeItem {
 	 * Launch the application.
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void changeItem() {
 		try {
 			changeItem window = new changeItem();
 			window.open();
@@ -40,6 +42,7 @@ public class changeItem {
 
 	/**
 	 * Create contents of the window.
+	 * @wbp.parser.entryPoint
 	 */
 	protected void createContents() {
 		shell = new Shell();
@@ -55,11 +58,27 @@ public class changeItem {
 		list.setBounds(67, 102, 366, 217);
 		
 		Button Exit = new Button(shell, SWT.NONE);
+		Exit.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				shell.dispose();
+				mainMenu mainMenuPanel = new mainMenu();
+				mainMenuPanel.open();
+			}
+		});
 		Exit.setText("Exit");
 		Exit.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
 		Exit.setBounds(188, 412, 124, 34);
 		
 		Button buttonChangeItem = new Button(shell, SWT.NONE);
+		buttonChangeItem.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				shell.dispose();
+				itemChangesSettings itemChangesSettingsPanel = new itemChangesSettings();
+				itemChangesSettingsPanel.open();
+			}
+		});
 		buttonChangeItem.setText("Change Item");
 		buttonChangeItem.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
 		buttonChangeItem.setBounds(188, 368, 124, 34);

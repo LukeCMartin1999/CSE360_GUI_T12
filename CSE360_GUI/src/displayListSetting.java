@@ -4,6 +4,8 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 
 public class displayListSetting {
 
@@ -13,7 +15,7 @@ public class displayListSetting {
 	 * Launch the application.
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void displayListSetting() {
 		try {
 			displayListSetting window = new displayListSetting();
 			window.open();
@@ -39,6 +41,7 @@ public class displayListSetting {
 
 	/**
 	 * Create contents of the window.
+	 * @wbp.parser.entryPoint
 	 */
 	protected void createContents() {
 		shell = new Shell();
@@ -61,6 +64,14 @@ public class displayListSetting {
 		buttonDueDate.setBounds(172, 240, 156, 34);
 		
 		Button buttonExit = new Button(shell, SWT.NONE);
+		buttonExit.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				shell.dispose();
+				mainMenu mainMenuPanel = new mainMenu();
+				mainMenuPanel.open();
+			}
+		});
 		buttonExit.setText("Exit");
 		buttonExit.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
 		buttonExit.setBounds(177, 384, 146, 34);
