@@ -29,7 +29,8 @@ public class addItem {
 			e.printStackTrace();
 		}
 	}
-
+	
+	
 	/**
 	 * Open the window.
 	 */
