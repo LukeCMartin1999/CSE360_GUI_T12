@@ -23,9 +23,18 @@ public class Date implements Comparable<Date> {
 	}
 	
 	@Override
-	public int compareTo(Date o) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int compareTo(Date other) {
+		if (year < other.year) return -1; 
+		else if (year > other.year) return 1;
+		else {
+			if (month < other.month) return -1;
+			else if (month > other.month) return 1;
+			else {
+				if (day < other.day) return -1;
+				else if (day > other.day) return 1;
+				return 0;
+			}
+		}
 	}
 
 	public int getMonth() {
