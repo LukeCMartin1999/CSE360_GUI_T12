@@ -3,7 +3,7 @@ package DataStructures;
 public class Entry {
 	private String description;
 	private int priority;
-	private DueDate dueDate;
+	private Date dueDate;
 	private Progress progress;
 	
 	public Entry() {
@@ -32,11 +32,11 @@ public class Entry {
 		this.priority = priority;
 	}
 
-	public DueDate getDueDate() {
+	public Date getDueDate() {
 		return dueDate;
 	}
 
-	public void setDueDate(DueDate dueDate) {
+	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
 	}
 
