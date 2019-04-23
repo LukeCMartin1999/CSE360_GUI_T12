@@ -1,13 +1,19 @@
 package DataStructures;
 
+import java.util.Calendar;
+
 public class Date implements Comparable<Date> {
 	
 	private int year;
 	private int month;
 	private int day;
 	
+	// has current date as default
 	public Date() {
-		// TODO default should be current date
+		Calendar now = Calendar.getInstance();
+		year = now.get(Calendar.YEAR);
+		month = now.get(Calendar.MONTH) + 1;
+		day = now.get(Calendar.DAY_OF_MONTH);
 	}
 	
 	public Date(int year, int month, int day) {
