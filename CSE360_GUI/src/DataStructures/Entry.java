@@ -9,6 +9,8 @@ public class Entry {
 	public Entry() {
 		description = "No description";
 		priority = 0;
+		dueDate = new Date();
+		progress = new Progress();
 	}
 	
 	public Entry(String description, int priority) {

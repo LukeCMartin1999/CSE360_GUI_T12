@@ -34,6 +34,22 @@ public class ToDoList {
 		sortEntries();
 	}
 	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder("");
+		for (Entry entry : entries) {
+			builder.append("Priority ").append(entry.getPriority()).append(": \n");
+			builder.append("\tDesc: ").append(entry.getDescription()).append("\n");
+			builder.append("\tDue: ").append(entry.getDueDate().getYear()).append("-")
+				.append(entry.getDueDate().getMonth()).append("-")
+				.append(entry.getDueDate().getDay()).append("\n");
+			// TODO
+			builder.append("\tProgress: not implemented\n");
+		}
+		
+		return builder.toString();
+	}
+	
 	private void sortEntries() {
 		Collections.sort(entries, new EntryComparator());
 	}
