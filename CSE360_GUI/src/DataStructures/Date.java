@@ -1,5 +1,4 @@
 package DataStructures;
-java.util.*
 
 public class Date implements Comparable<Date> {
 	
@@ -9,7 +8,6 @@ public class Date implements Comparable<Date> {
 	
 	public Date() {
 		// TODO default should be current date
-		Date date = new Date();
 	}
 	
 	public Date(int year, int month, int day) {
@@ -21,7 +19,7 @@ public class Date implements Comparable<Date> {
 	@Override
 	public int compareTo(Date o) {
 		// TODO Auto-generated method stub
-		int result = date.compareTo(o)
+		return 0;
 	}
 
 	public int getMonth() {
