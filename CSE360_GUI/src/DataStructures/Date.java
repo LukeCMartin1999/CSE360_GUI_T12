@@ -6,6 +6,10 @@ public class Date implements Comparable<Date> {
 	private int month;
 	private int day;
 	
+	public Date() {
+		// TODO default should be current date
+	}
+	
 	public Date(int year, int month, int day) {
 		this.year = year;
 		this.month = month;
