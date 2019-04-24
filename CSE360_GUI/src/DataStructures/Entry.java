@@ -1,10 +1,13 @@
 package DataStructures;
 
-public class Entry {
+import java.io.Serializable;
+
+public class Entry implements Serializable {
 	private String description;
 	private int priority;
 	private Date dueDate;
 	private Progress progress;
+	private static final long serialVersionUID = 2L;
 	
 	public Entry() {
 		description = "No description";

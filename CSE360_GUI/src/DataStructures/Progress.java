@@ -1,10 +1,13 @@
 package DataStructures;
 
-public class Progress {
+import java.io.Serializable;
+
+public class Progress implements Serializable {
 	public enum Status { NOT_STARTED, IN_PROGRESS, FINISHED };
 	
 	private Status status;
 	private Date date;
+	private static final long serialVersionUID = 4L;
 	
 	public Progress() {
 		setStatus(Status.NOT_STARTED);

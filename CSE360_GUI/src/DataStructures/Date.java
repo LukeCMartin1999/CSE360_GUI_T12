@@ -1,12 +1,14 @@
 package DataStructures;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
-public class Date implements Comparable<Date> {
+public class Date implements Comparable<Date>, Serializable {
 	
 	private int year;
 	private int month;
 	private int day;
+	private static final long serialVersionUID = 3L;
 	
 	// has current date as default
 	public Date() {

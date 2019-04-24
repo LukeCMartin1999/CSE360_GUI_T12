@@ -1,21 +1,48 @@
 package DataStructures;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class ToDoList {
+public class ToDoList implements Serializable {
 	public enum Sort { DESC, PRIORITY, DUE_DATE, STATUS };
 	
 	private List<Entry> entries;
 	private Sort sort;
+	private final static String SAVE_FILE_DIR = "ToDoSave.dat";
+	private static final long serialVersionUID = 1L;
 	
 	public ToDoList() {
 		entries = new ArrayList<Entry>();
 		sort = Sort.PRIORITY;
 	}
+	
+	public static void save(ToDoList list) throws FileNotFoundException, IOException {
+		File file = new File(SAVE_FILE_DIR);
+		ObjectOutputStream out = null;
+		try {
+			out = new ObjectOutputStream(new FileOutputStream(file));
+			out.writeObject(list);
+		}
+		finally {
+			if (out != null) out.close();
+		}
+	}
 
+	public static ToDoList load() throws ClassNotFoundException, IOException {
+		File file = new File(SAVE_FILE_DIR);
+		ObjectInputStream in = null;
+		try {
+			in = new ObjectInputStream(new FileInputStream(file));
+			return (ToDoList) in.readObject();
+		}
+		finally {
+			if (in != null) in.close();
+		}
+	}
+	
 	public List<Entry> getEntries() {
 		return entries;
 	}
