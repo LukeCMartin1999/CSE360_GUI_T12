@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import DataStructures.Progress.Status;
+
 public class ToDoList implements Serializable {
 	public enum Sort { DESC, PRIORITY, DUE_DATE, STATUS };
 	
@@ -44,9 +46,10 @@ public class ToDoList implements Serializable {
 	}
 	
 	public List<Entry> getEntries() {
+		removeFinishedEntries();
 		return entries;
 	}
-	
+
 	public void addEntry(Entry newEntry) {
 		entries.add(newEntry);
 		sortEntries();
@@ -57,12 +60,15 @@ public class ToDoList implements Serializable {
 	}
 	
 	public void removeEntryByPriority(int priority) {
+		int index = -1;
 		for (int i = 0; i < entries.size(); i++) {
 			if (entries.get(i).getPriority() == priority) {
-				entries.remove(i);
-				return;
+				index = i;
+				break;
 			}
 		}
+		
+		if (index > -1) removeEntryByIndex(index);
 	}
 	
 	public Sort getSort() {
@@ -92,6 +98,14 @@ public class ToDoList implements Serializable {
 	
 	private void sortEntries() {
 		Collections.sort(entries, new EntryComparator());
+	}
+	
+	private void removeFinishedEntries() {
+		for (int i = 0; i < entries.size(); i++) {
+			if (entries.get(i).getProgress().getStatus() == Status.FINISHED) {
+				removeEntryByPriority(entries.get(i).getPriority());
+			}
+		}
 	}
 	
 	private class EntryComparator implements Comparator<Entry> {
