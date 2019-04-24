@@ -52,6 +52,19 @@ public class ToDoList implements Serializable {
 		sortEntries();
 	}
 
+	public void removeEntryByIndex(int index) {
+		entries.remove(index);
+	}
+	
+	public void removeEntryByPriority(int priority) {
+		for (int i = 0; i < entries.size(); i++) {
+			if (entries.get(i).getPriority() == priority) {
+				entries.remove(i);
+				return;
+			}
+		}
+	}
+	
 	public Sort getSort() {
 		return sort;
 	}
