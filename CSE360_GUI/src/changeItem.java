@@ -61,14 +61,7 @@ public class changeItem {
 	    System.out.println(y);
 	    shell.setLocation(x, y);
 		
-		 Monitor primary = display.getPrimaryMonitor();
-		 Rectangle bounds = primary.getBounds();
-		 Rectangle rect = shell.getBounds();
-
 		
-		int x = bounds.x + (bounds.width - rect.width) / 2;
-	    int y = bounds.y + (bounds.height - rect.height) / 2;
-	    
 	    System.out.println(x);
 	    System.out.println(y);
 	    shell.setLocation(x, y);
@@ -144,7 +137,7 @@ public class changeItem {
 				
 				System.out.println(selected);
 				itemChangesSettings itemChangesSettingsPanel = new itemChangesSettings();
-				itemChangesSettingsPanel.open(List);
+				
 				itemChangesSettingsPanel.open(List, selected);
 			}
 		});

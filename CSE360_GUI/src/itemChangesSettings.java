@@ -38,9 +38,7 @@ public class itemChangesSettings {
 	/**
 	 * Open the window.
 	 */
-	public void open(ToDoList List) {
-		Display display = Display.getDefault();
-		createContents(List, display);
+	
 	public void open(ToDoList List, int entryIndex) {
 		Display display = Display.getDefault();
 		createContents(List, display, entryIndex);
@@ -57,25 +55,13 @@ public class itemChangesSettings {
 	 * Create contents of the window.
 	 * @wbp.parser.entryPoint
 	 */
-	protected void createContents(ToDoList List, Display display) {
-		shell = new Shell();
-		shell.setSize(600, 500);
-		shell.setText("SWT Application");
+
 	protected void createContents(ToDoList List, Display display, int entryIndex) {
 		shell = new Shell();
 		shell.setSize(600, 500);
 		shell.setText("Change Item");
 
-		Monitor primary = display.getPrimaryMonitor();
-		 Rectangle bounds = primary.getBounds();
-		 Rectangle rect = shell.getBounds();
-
-		
-		int x = bounds.x + (bounds.width - rect.width) / 2;
-	    int y = bounds.y + (bounds.height - rect.height) / 2;
-	    
-	    shell.setLocation(x, y);
-		
+	    		
 		Monitor primary = display.getPrimaryMonitor();
 		 Rectangle bounds = primary.getBounds();
 		 Rectangle rect = shell.getBounds();

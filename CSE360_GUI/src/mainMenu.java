@@ -147,6 +147,12 @@ public class mainMenu {
 		buttonRestoreList.setBounds(215, 280, 170, 40);
 		
 		Button buttonSaveCurrentList = new Button(shlTodoList, SWT.NONE);
+		buttonSaveCurrentList.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+			}
+		});
 		buttonSaveCurrentList.setText("Save Current List");
 		buttonSaveCurrentList.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
 		buttonSaveCurrentList.setFont(SWTResourceManager.getFont("Arial", 13, SWT.NORMAL));

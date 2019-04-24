@@ -66,8 +66,7 @@ public class removeItem {
 		builder = builder + ("   Due: ") + (entry.getDueDate().getMonth()) + ("/")
 			+ (entry.getDueDate().getDay())+ ("/")
 			+ (entry.getDueDate().getYear());
-		// TODO
-		builder = builder + ("   Progress: not implemented");
+		
 
 		builder = builder + ("   ");
 		if(entry.getProgress().getStatus() == Status.NOT_STARTED) 

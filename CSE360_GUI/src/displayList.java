@@ -64,15 +64,6 @@ public class displayList {
 	    shell.setLocation(x, y);
 		
 		
-		 Monitor primary = display.getPrimaryMonitor();
-		 Rectangle bounds = primary.getBounds();
-		 Rectangle rect = shell.getBounds();
-
-		
-		int x = bounds.x + (bounds.width - rect.width) / 2;
-	    int y = bounds.y + (bounds.height - rect.height) / 2;
-	    
-	    shell.setLocation(x, y);
 		
 		Label lblNewLabel = new Label(shell, SWT.NONE);
 		lblNewLabel.setFont(SWTResourceManager.getFont("Arial", 18, SWT.BOLD));

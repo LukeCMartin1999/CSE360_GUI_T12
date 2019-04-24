@@ -10,7 +10,6 @@ import DataStructures.Entry;
 import DataStructures.ToDoList;
 
 import DataStructures.Progress;
-import DataStructures.ToDoList;
 import DataStructures.Progress.Status;
 
 import org.eclipse.swt.widgets.Text;
@@ -78,13 +77,7 @@ public class addItem {
 
 	    shell.setLocation(x, y);
 		
-		 Monitor primary = display.getPrimaryMonitor();
-		 Rectangle bounds = primary.getBounds();
-		 Rectangle rect = shell.getBounds();
-
 		
-		int x = bounds.x + (bounds.width - rect.width) / 2;
-	    int y = bounds.y + (bounds.height - rect.height) / 2;
 	    
 	    System.out.println(x);
 	    System.out.println(y);
@@ -179,12 +172,7 @@ public class addItem {
 		labelSlaph2.setFont(SWTResourceManager.getFont("Arial", 18, SWT.BOLD));
 		labelSlaph2.setBounds(327, 283, 15, 21);
 
-		buttonAdd.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
 
-		
-		
 		
 		
 		
@@ -288,4 +276,6 @@ public class addItem {
 		});
 
 	}
-}
+   
+  }
+
