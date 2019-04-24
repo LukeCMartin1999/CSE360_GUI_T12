@@ -3,20 +3,10 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
-
-import DataStructures.Entry;
-import DataStructures.ToDoList;
-
 import org.eclipse.swt.widgets.List;
-import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Rectangle;
-
-
-
-
 
 public class displayList {
 
@@ -26,13 +16,21 @@ public class displayList {
 	 * Launch the application.
 	 * @param args
 	 */
+	public static void displayList() {
+		try {
+			displayList window = new displayList();
+			window.open();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * Open the window.
 	 */
-	public void open(ToDoList List) {
+	public void open() {
 		Display display = Display.getDefault();
-		createContents(List, display);
+		createContents();
 		shell.open();
 		shell.layout();
 		while (!shell.isDisposed()) {
@@ -46,31 +44,21 @@ public class displayList {
 	 * Create contents of the window.
 	 * @wbp.parser.entryPoint
 	 */
-	protected void createContents(ToDoList List, Display display) {
+	protected void createContents() {
 		shell = new Shell();
-		shell.setSize(600, 500);
+		shell.setSize(500, 500);
 		shell.setText("SWT Application");
-		
-		
-		 Monitor primary = display.getPrimaryMonitor();
-		 Rectangle bounds = primary.getBounds();
-		 Rectangle rect = shell.getBounds();
-
-		
-		int x = bounds.x + (bounds.width - rect.width) / 2;
-	    int y = bounds.y + (bounds.height - rect.height) / 2;
-	    
-	    shell.setLocation(x, y);
 		
 		Label lblNewLabel = new Label(shell, SWT.NONE);
 		lblNewLabel.setFont(SWTResourceManager.getFont("Arial", 18, SWT.BOLD));
-		lblNewLabel.setBounds(244, 52, 111, 30);
+		lblNewLabel.setBounds(194, 52, 111, 30);
 		lblNewLabel.setText("Display List ");
 		
-
-
+		List list = new List(shell, SWT.BORDER);
+		list.setBounds(48, 112, 403, 214);
+		list.add("This is a Test");
+		list.add("This is a display test");
 		
-
 		
 		
 		Button buttonExit = new Button(shell, SWT.NONE);
@@ -79,12 +67,12 @@ public class displayList {
 			public void widgetSelected(SelectionEvent e) {
 				shell.dispose();
 				mainMenu mainMenuPanel = new mainMenu();
-				mainMenuPanel.open(List);
+				mainMenuPanel.open();
 			}
 		});
 		buttonExit.setText("Exit");
 		buttonExit.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-		buttonExit.setBounds(238, 402, 124, 34);
+		buttonExit.setBounds(188, 402, 124, 34);
 		
 		Button buttonDisplaySettings = new Button(shell, SWT.NONE);
 		buttonDisplaySettings.addSelectionListener(new SelectionAdapter() {
@@ -92,32 +80,14 @@ public class displayList {
 			public void widgetSelected(SelectionEvent e) {
 				shell.dispose();
 				displayListSetting displayListSettingPanel = new displayListSetting();
-				displayListSettingPanel.open(List);
+				displayListSettingPanel.open();
 				
 			}
 		});
 		buttonDisplaySettings.setText("Display Settings");
 		buttonDisplaySettings.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
-		buttonDisplaySettings.setBounds(238, 358, 124, 34);
-		
-		List displayList = new List(shell, SWT.BORDER);
-		displayList.setBounds(38, 114, 523, 238);
-		String builder = new String();
-		for(Entry entry : List.getEntries())
-		{
-		builder = "";
-		builder = ("Priority: ") + entry.getPriority();
-		builder = builder + ("   Due: ") + (entry.getDueDate().getMonth()) + ("/")
-			+ (entry.getDueDate().getDay())+ ("/")
-			+ (entry.getDueDate().getYear());
-		// TODO
-		builder = builder + ("   Progress: not implemented");
-		builder = builder + ("   Desc: ") + entry.getDescription();
-		displayList.add(builder);
-		}
-		
-		
-		
+		buttonDisplaySettings.setBounds(188, 358, 124, 34);
 
 	}
+
 }

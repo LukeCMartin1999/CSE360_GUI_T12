@@ -1,26 +1,38 @@
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.wb.swt.SWTResourceManager;
-
-import DataStructures.Entry;
-import DataStructures.ToDoList;
-
 import org.eclipse.swt.widgets.List;
-import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Rectangle;
 
 public class removeItem {
 
 	protected Shell shell;
 
-	public void open(ToDoList List) {
+	/**
+	 * Launch the application.
+	 * @param args
+	 */
+	public static void removeItem() {
+		try {
+			removeItem window = new removeItem();
+			window.open();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Open the window.
+	 */
+	public void open() {
 		Display display = Display.getDefault();
-		createContents(List, display);
+		createContents();
 		shell.open();
 		shell.layout();
 		while (!shell.isDisposed()) {
@@ -34,42 +46,20 @@ public class removeItem {
 	 * Create contents of the window.
 	 * @wbp.parser.entryPoint
 	 */
-	protected void createContents(ToDoList List, Display display) {
+	protected void createContents() {
 		shell = new Shell();
-		shell.setSize(600, 500);
+		shell.setSize(500, 500);
 		shell.setText("SWT Application");
-		
-		 Monitor primary = display.getPrimaryMonitor();
-		 Rectangle bounds = primary.getBounds();
-		 Rectangle rect = shell.getBounds();
-
-		
-		int x = bounds.x + (bounds.width - rect.width) / 2;
-	    int y = bounds.y + (bounds.height - rect.height) / 2;
-	    
-	    shell.setLocation(x, y);
 		
 		Label lblRemoveItem = new Label(shell, SWT.NONE);
 		lblRemoveItem.setFont(SWTResourceManager.getFont("Arial", 18, SWT.BOLD));
-		lblRemoveItem.setBounds(241, 44, 117, 21);
+		lblRemoveItem.setBounds(191, 44, 117, 21);
 		lblRemoveItem.setText("Remove Item");
 		
-		List removeList = new List(shell, SWT.BORDER);
-		removeList.setBounds(35, 110, 530, 220);
-		String builder = new String();
-		
-		for(Entry entry : List.getEntries())
-		{
-		builder = "";
-		builder = ("Priority: ") + entry.getPriority();
-		builder = builder + ("   Due: ") + (entry.getDueDate().getMonth()) + ("/")
-			+ (entry.getDueDate().getDay())+ ("/")
-			+ (entry.getDueDate().getYear());
-		// TODO
-		builder = builder + ("   Progress: not implemented");
-		builder = builder + ("   Desc: ") + entry.getDescription();
-		removeList.add(builder);
-		}
+		List list = new List(shell, SWT.BORDER);
+		list.setBounds(64, 110, 371, 220);
+		list.add("This is a test");
+		list.add("Select me to Delete me");
 		
 		Button buttonExit = new Button(shell, SWT.NONE);
 		buttonExit.addSelectionListener(new SelectionAdapter() {
@@ -77,25 +67,25 @@ public class removeItem {
 			public void widgetSelected(SelectionEvent e) {
 				shell.dispose();
 				mainMenu mainMenuPanel = new mainMenu();
-				mainMenuPanel.open(List);
+				mainMenuPanel.open();
 			}
 		});
 		buttonExit.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-		buttonExit.setBounds(241, 396, 118, 34);
+		buttonExit.setBounds(191, 396, 118, 34);
 		buttonExit.setText("Exit");
 		
 		Button buttonRemove = new Button(shell, SWT.NONE);
 		buttonRemove.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				int selected = removeList.getSelectionIndex();
-				removeList.remove(selected);
+				int selected = list.getSelectionIndex();
+				list.remove(selected);
 				
 			}
 		});
 		buttonRemove.setText("Remove");
 		buttonRemove.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
-		buttonRemove.setBounds(241, 352, 118, 34);
+		buttonRemove.setBounds(191, 352, 118, 34);
 
 	}
 }
