@@ -80,6 +80,11 @@ public class ToDoList implements Serializable {
 		sortEntries();
 	}
 	
+	public void startOver() {
+		entries = new ArrayList<Entry>();
+		sort = Sort.PRIORITY;
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder("");
