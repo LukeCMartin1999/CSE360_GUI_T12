@@ -67,8 +67,7 @@ public class mainMenu {
 		int x = bounds.x + (bounds.width - rect.width) / 2;
 	    int y = bounds.y + (bounds.height - rect.height) / 2;
 	    
-	    System.out.println(x);
-	    System.out.println(y);
+
 	    shlTodoList.setLocation(x, y);
 
 		//shlTodoList.setLocation(null);
@@ -161,7 +160,13 @@ public class mainMenu {
 		buttonQuitApp.setText("Quit Application");
 		buttonQuitApp.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
 		buttonQuitApp.setFont(SWTResourceManager.getFont("Arial", 13, SWT.BOLD));
-		buttonQuitApp.setBounds(215, 372, 170, 40);
+		buttonQuitApp.setBounds(215, 418, 170, 40);
+		
+		Button buttonPrintLog = new Button(shlTodoList, SWT.NONE);
+		buttonPrintLog.setText("Print List History");
+		buttonPrintLog.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
+		buttonPrintLog.setFont(SWTResourceManager.getFont("Arial", 13, SWT.NORMAL));
+		buttonPrintLog.setBounds(215, 372, 170, 40);
 
 	}
 }

@@ -7,6 +7,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
 
 import DataStructures.Entry;
 import DataStructures.ToDoList;
+import DataStructures.Progress.Status;
 
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Monitor;
@@ -65,8 +66,20 @@ public class removeItem {
 		builder = builder + ("   Due: ") + (entry.getDueDate().getMonth()) + ("/")
 			+ (entry.getDueDate().getDay())+ ("/")
 			+ (entry.getDueDate().getYear());
-		// TODO
-		builder = builder + ("   Progress: not implemented");
+
+		builder = builder + ("   ");
+		if(entry.getProgress().getStatus() == Status.NOT_STARTED) 
+		{
+			builder = builder + "Status: Not Started";	
+		}
+		else if(entry.getProgress().getStatus() == Status.IN_PROGRESS)
+		{
+			builder = builder + "Status: In Progress";
+		}
+		else if (entry.getProgress().getStatus() == Status.FINISHED)
+		{
+			builder = builder + "Status: Finished";
+		}
 		builder = builder + ("   Desc: ") + entry.getDescription();
 		removeList.add(builder);
 		}
@@ -89,7 +102,21 @@ public class removeItem {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				int selected = removeList.getSelectionIndex();
-				removeList.remove(selected);
+				
+				if(selected == -1)
+				{
+					Label labelSelect = new Label(shell, SWT.NONE);
+					labelSelect.setAlignment(SWT.CENTER);
+					labelSelect.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
+					labelSelect.setBounds(214, 72, 171, 14);
+					labelSelect.setText("Please Select an Item First");
+					return;
+					
+				}
+				List.deleteEntry(selected);
+				shell.dispose();
+				removeItem removeItemPanel = new removeItem();
+				removeItemPanel.open(List);
 				
 			}
 		});
