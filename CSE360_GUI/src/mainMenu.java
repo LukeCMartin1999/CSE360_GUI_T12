@@ -1,25 +1,32 @@
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.wb.swt.SWTResourceManager;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
+import DataStructures.ToDoList;;
+
+
 public class mainMenu {
 
+	 
 	protected Shell shlTodoList;
-
+	
 	/**
 	 * Launch the application.
 	 * @param args
 	 */
+	
 	public static void main(String[] args) {
+		ToDoList ToDoListTest = new ToDoList();
 		try {
 			mainMenu window = new mainMenu();
-			window.open();
+			window.open(ToDoListTest);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -28,9 +35,9 @@ public class mainMenu {
 	/**
 	 * Open the window.
 	 */
-	public void open() {
+	public void open(ToDoList List) {
 		Display display = Display.getDefault();
-		createContents();
+		createContents(List, display);
 		shlTodoList.open();
 		shlTodoList.layout();
 		while (!shlTodoList.isDisposed()) {
@@ -43,20 +50,38 @@ public class mainMenu {
 	/**
 	 * Create contents of the window.
 	 */
-	protected void createContents() {
+	protected void createContents(ToDoList ToDoListTest, Display display) {
+		
+		
+		
 		shlTodoList = new Shell();
 		shlTodoList.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
-		shlTodoList.setSize(500, 500);
+		shlTodoList.setSize(600, 500);
 		shlTodoList.setText("To-Do List");
+		
+		 Monitor primary = display.getPrimaryMonitor();
+		 Rectangle bounds = primary.getBounds();
+		 Rectangle rect = shlTodoList.getBounds();
+
+		
+		int x = bounds.x + (bounds.width - rect.width) / 2;
+	    int y = bounds.y + (bounds.height - rect.height) / 2;
+	    
+	    System.out.println(x);
+	    System.out.println(y);
+
+	    shlTodoList.setLocation(x, y);
+
+		//shlTodoList.setLocation(null);
 		
 		Label lblNewLabel = new Label(shlTodoList, SWT.NONE);
 		lblNewLabel.setFont(SWTResourceManager.getFont("Arial", 18, SWT.BOLD));
-		lblNewLabel.setBounds(175, 23, 150, 28);
+		lblNewLabel.setBounds(225, 23, 150, 28);
 		lblNewLabel.setText("Welcome to Your");
 		
 		Label lblToDoList = new Label(shlTodoList, SWT.NONE);
 		lblToDoList.setFont(SWTResourceManager.getFont("Arial", 18, SWT.BOLD));
-		lblToDoList.setBounds(203, 48, 94, 21);
+		lblToDoList.setBounds(253, 48, 94, 21);
 		lblToDoList.setText("To Do List ");
 		
 		Button buttonRemoveItem = new Button(shlTodoList, SWT.NONE);
@@ -65,12 +90,12 @@ public class mainMenu {
 			public void widgetSelected(SelectionEvent e) {
 				shlTodoList.dispose();
 				removeItem removeItemPanel = new removeItem();
-				removeItemPanel.open();
+				removeItemPanel.open(ToDoListTest);
 			}
 		});
 		buttonRemoveItem.setFont(SWTResourceManager.getFont("Arial", 13, SWT.NORMAL));
 		buttonRemoveItem.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
-		buttonRemoveItem.setBounds(165, 188, 170, 40);
+		buttonRemoveItem.setBounds(215, 188, 170, 40);
 		buttonRemoveItem.setText("Remove Item from List ");
 		
 		Button buttonAddItem = new Button(shlTodoList, SWT.NONE);
@@ -79,13 +104,13 @@ public class mainMenu {
 			public void widgetSelected(SelectionEvent e) {
 				shlTodoList.dispose();
 				addItem addItemPanel = new addItem();
-				addItemPanel.open();
+				addItemPanel.open(ToDoListTest);
 			}
 		});
 		buttonAddItem.setText("Add Item to List ");
 		buttonAddItem.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
 		buttonAddItem.setFont(SWTResourceManager.getFont("Arial", 13, SWT.NORMAL));
-		buttonAddItem.setBounds(165, 96, 169, 40);
+		buttonAddItem.setBounds(215, 96, 169, 40);
 		
 		Button buttonDisplayList = new Button(shlTodoList, SWT.NONE);
 		buttonDisplayList.addSelectionListener(new SelectionAdapter() {
@@ -93,13 +118,13 @@ public class mainMenu {
 			public void widgetSelected(SelectionEvent e) {
 				shlTodoList.dispose();
 				displayList displayListPanel = new displayList();
-				displayListPanel.open();
+				displayListPanel.open(ToDoListTest);
 			} 
 		});
 		buttonDisplayList.setText("Display List");
 		buttonDisplayList.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
 		buttonDisplayList.setFont(SWTResourceManager.getFont("Arial", 13, SWT.NORMAL));
-		buttonDisplayList.setBounds(165, 142, 170, 40);
+		buttonDisplayList.setBounds(215, 142, 170, 40);
 		
 		Button buttonChangeItem = new Button(shlTodoList, SWT.NONE);
 		buttonChangeItem.addSelectionListener(new SelectionAdapter() {
@@ -107,25 +132,31 @@ public class mainMenu {
 			public void widgetSelected(SelectionEvent e) {
 				shlTodoList.dispose();
 				changeItem changeItemPanel = new changeItem();
-				changeItemPanel.open();
+				changeItemPanel.open(ToDoListTest);
 			}
 		});
 		buttonChangeItem.setText("Change Item on List");
 		buttonChangeItem.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
 		buttonChangeItem.setFont(SWTResourceManager.getFont("Arial", 13, SWT.NORMAL));
-		buttonChangeItem.setBounds(165, 234, 170, 40);
+		buttonChangeItem.setBounds(215, 234, 170, 40);
 		
 		Button buttonRestoreList = new Button(shlTodoList, SWT.NONE);
 		buttonRestoreList.setText("Restore Previous List");
 		buttonRestoreList.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
 		buttonRestoreList.setFont(SWTResourceManager.getFont("Arial", 13, SWT.NORMAL));
-		buttonRestoreList.setBounds(165, 280, 170, 40);
+		buttonRestoreList.setBounds(215, 280, 170, 40);
 		
 		Button buttonSaveCurrentList = new Button(shlTodoList, SWT.NONE);
+		buttonSaveCurrentList.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+			}
+		});
 		buttonSaveCurrentList.setText("Save Current List");
 		buttonSaveCurrentList.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
 		buttonSaveCurrentList.setFont(SWTResourceManager.getFont("Arial", 13, SWT.NORMAL));
-		buttonSaveCurrentList.setBounds(165, 326, 170, 40);
+		buttonSaveCurrentList.setBounds(215, 326, 170, 40);
 		
 		Button buttonQuitApp = new Button(shlTodoList, SWT.NONE);
 		buttonQuitApp.addSelectionListener(new SelectionAdapter() {
@@ -137,7 +168,14 @@ public class mainMenu {
 		buttonQuitApp.setText("Quit Application");
 		buttonQuitApp.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
 		buttonQuitApp.setFont(SWTResourceManager.getFont("Arial", 13, SWT.BOLD));
-		buttonQuitApp.setBounds(165, 372, 170, 40);
+		buttonQuitApp.setBounds(215, 372, 170, 40);
+		buttonQuitApp.setBounds(215, 418, 170, 40);
+		
+		Button buttonPrintLog = new Button(shlTodoList, SWT.NONE);
+		buttonPrintLog.setText("Print List History");
+		buttonPrintLog.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
+		buttonPrintLog.setFont(SWTResourceManager.getFont("Arial", 13, SWT.NORMAL));
+		buttonPrintLog.setBounds(215, 372, 170, 40);
 
 	}
 }

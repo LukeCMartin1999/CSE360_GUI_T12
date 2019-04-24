@@ -75,6 +75,53 @@ public class ToDoList implements Serializable {
 		return sort;
 	}
 	
+	public Entry getEntry(int index)
+	{
+		Entry currentEntry;
+		currentEntry = entries.get(index);
+		return currentEntry;
+	}
+	
+	public void deleteEntry(int index) {
+		entries.remove(index);
+		sortEntries();
+	}
+	
+	public boolean isDateNumber(String date) {
+		boolean isNumber;
+		isNumber = date.matches("-?\\d+(\\.\\d+)?");
+		if(isNumber && date.length() == 2) {
+			isNumber = true;
+			return isNumber;
+		}
+		else {
+			isNumber = false;
+			return isNumber;
+		}
+		
+	}
+	
+	public boolean isPriorityNumber(String priority) {
+		boolean isNumber;
+		isNumber = priority.matches("-?\\d+(\\.\\d+)?");
+		return isNumber;
+		
+	}
+	public boolean isDecriptionUnique(String description) {
+		boolean isUnique;
+		for (Entry entry : entries) {
+			String currentDecription = entry.getDescription();
+			if(description.equals(currentDecription)) {
+				isUnique = false;
+				return isUnique;
+			}
+		}	
+		
+		isUnique = true;
+		return isUnique;
+		
+	}
+
 	public void setSort(Sort sort) {
 		this.sort = sort;
 		sortEntries();
@@ -122,6 +169,7 @@ public class ToDoList implements Serializable {
 			case PRIORITY:
 				return first.getPriority() - second.getPriority();
 			case DUE_DATE:
+				System.out.println("Due Dare Comp");
 				return first.getDueDate().compareTo(second.getDueDate());
 			case STATUS:
 				if (first.getProgress().getStatus() == second.getProgress().getStatus()) return 0;
@@ -136,6 +184,12 @@ public class ToDoList implements Serializable {
 			}
 		}
 	}
+
+
+
+
+
+
 }
 
 
