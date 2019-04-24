@@ -5,6 +5,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import DataStructures.Entry;
+import DataStructures.Progress.Status;
 import DataStructures.ToDoList;
 
 import org.eclipse.swt.widgets.List;
@@ -49,7 +50,18 @@ public class displayList {
 	protected void createContents(ToDoList List, Display display) {
 		shell = new Shell();
 		shell.setSize(600, 500);
-		shell.setText("SWT Application");
+		shell.setText("Display List");
+		
+		
+		 Monitor primary = display.getPrimaryMonitor();
+		 Rectangle bounds = primary.getBounds();
+		 Rectangle rect = shell.getBounds();
+
+		
+		int x = bounds.x + (bounds.width - rect.width) / 2;
+	    int y = bounds.y + (bounds.height - rect.height) / 2;
+	    
+	    shell.setLocation(x, y);
 		
 		
 		 Monitor primary = display.getPrimaryMonitor();
@@ -111,7 +123,19 @@ public class displayList {
 			+ (entry.getDueDate().getDay())+ ("/")
 			+ (entry.getDueDate().getYear());
 		// TODO
-		builder = builder + ("   Progress: not implemented");
+		builder = builder + ("   ");
+		if(entry.getProgress().getStatus() == Status.NOT_STARTED) 
+		{
+			builder = builder + "Status: Not Started";	
+		}
+		else if(entry.getProgress().getStatus() == Status.IN_PROGRESS)
+		{
+			builder = builder + "Status: In Progress";
+		}
+		else if (entry.getProgress().getStatus() == Status.FINISHED)
+		{
+			builder = builder + "Status: Finished";
+		}
 		builder = builder + ("   Desc: ") + entry.getDescription();
 		displayList.add(builder);
 		}

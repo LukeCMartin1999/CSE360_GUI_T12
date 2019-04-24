@@ -5,6 +5,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import DataStructures.ToDoList;
+import DataStructures.ToDoList.Sort;
 
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Monitor;
@@ -45,6 +46,18 @@ public class displayListSetting {
 		shell = new Shell();
 		shell.setSize(600, 500);
 		shell.setText("SWT Application");
+		shell.setText("Display List");
+		
+		Monitor primary = display.getPrimaryMonitor();
+		Rectangle bounds = primary.getBounds();
+		Rectangle rect = shell.getBounds();
+
+		
+		int x = bounds.x + (bounds.width - rect.width) / 2;
+	    int y = bounds.y + (bounds.height - rect.height) / 2;
+	    
+
+	    shell.setLocation(x, y);
 		
 		Monitor primary = display.getPrimaryMonitor();
 		Rectangle bounds = primary.getBounds();
@@ -59,16 +72,43 @@ public class displayListSetting {
 	    shell.setLocation(x, y);
 		
 		Button buttonPriority = new Button(shell, SWT.NONE);
+		buttonPriority.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				List.setSort(Sort.PRIORITY);
+				shell.dispose();
+				displayList displayListPanel = new displayList();
+				displayListPanel.open(List);
+			}
+		});
 		buttonPriority.setText("Display by Priority");
 		buttonPriority.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
 		buttonPriority.setBounds(222, 169, 156, 34);
 		
 		Button buttonAlphabetically = new Button(shell, SWT.NONE);
+		buttonAlphabetically.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				List.setSort(Sort.DESC);
+				shell.dispose();
+				displayList displayListPanel = new displayList();
+				displayListPanel.open(List);
+			}
+		});
 		buttonAlphabetically.setText("Display Alphabetically");
 		buttonAlphabetically.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
 		buttonAlphabetically.setBounds(222, 101, 156, 34);
 		
 		Button buttonDueDate = new Button(shell, SWT.NONE);
+		buttonDueDate.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				List.setSort(Sort.DUE_DATE);
+				shell.dispose();
+				displayList displayListPanel = new displayList();
+				displayListPanel.open(List);
+			}
+		});
 		buttonDueDate.setText("Display by Due Date");
 		buttonDueDate.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
 		buttonDueDate.setBounds(222, 240, 156, 34);
@@ -87,6 +127,15 @@ public class displayListSetting {
 		buttonExit.setBounds(227, 384, 146, 34);
 		
 		Button buttonStatus = new Button(shell, SWT.NONE);
+		buttonStatus.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				List.setSort(Sort.STATUS);
+				shell.dispose();
+				displayList displayListPanel = new displayList();
+				displayListPanel.open(List);
+			}
+		});
 		buttonStatus.setText("Display by Status");
 		buttonStatus.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
 		buttonStatus.setBounds(222, 312, 156, 34);
