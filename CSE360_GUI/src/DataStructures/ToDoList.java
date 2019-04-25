@@ -15,6 +15,7 @@ public class ToDoList implements Serializable {
 	private Sort sort;
 	private final static String SAVE_FILE_DIR = "ToDoSave.dat";
 	private static final long serialVersionUID = 1L;
+	private String textwriter;
 	
 	public ToDoList() {
 		entries = new ArrayList<Entry>();
