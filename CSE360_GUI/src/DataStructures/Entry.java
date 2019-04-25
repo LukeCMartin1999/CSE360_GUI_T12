@@ -3,22 +3,25 @@ package DataStructures;
 import java.io.Serializable;
 
 public class Entry implements Serializable {
+	private ToDoList list;
 	private String description;
 	private int priority;
 	private Date dueDate;
 	private Progress progress;
 	private static final long serialVersionUID = 2L;
 	
-	public Entry() {
+	public Entry(ToDoList list) {
 		description = "No description";
 		priority = 0;
 		dueDate = new Date();
 		progress = new Progress();
+		this.list = list;
 	}
 	
-	public Entry(String description, int priority) {
+	public Entry(ToDoList list, String description, int priority) {
 		this.description = description;
 		this.priority = priority;
+		this.list = list;
 	}
 
 	public String getDescription() {
