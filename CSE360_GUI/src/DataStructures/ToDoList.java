@@ -98,9 +98,6 @@ public class ToDoList implements Serializable {
 		return currentEntry;
 		
 		String textwriter = currentEntry;
-		fileWriter = new FileWriter(file);
-		fileWriter.write(textwriter);
-		fileWriter.close();
 	}
 	
 	public void deleteEntry(int index) {
@@ -108,9 +105,6 @@ public class ToDoList implements Serializable {
 		sortEntries();
 		
 		String textwriter = deleteEntry;
-		fileWriter = new FileWriter(file);
-		fileWriter.write(textwriter);
-		fileWriter.close();
 	}
 	
 	public boolean isDateNumber(String date) {
@@ -153,9 +147,6 @@ public class ToDoList implements Serializable {
 		sortEntries();
 		
 		String textwriter = setSort;
-		fileWriter = new FileWriter(file);
-		fileWriter.write(textwriter);
-		fileWriter.close();
 	}
 	
 	public void startOver() {
@@ -163,9 +154,6 @@ public class ToDoList implements Serializable {
 		sort = Sort.PRIORITY;
 		
 		String textwriter = startOver;
-		fileWriter = new FileWriter(file);
-		fileWriter.write(textwriter);
-		fileWriter.close();
 	}
 	
 	@Override
