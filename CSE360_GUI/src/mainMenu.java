@@ -1,5 +1,8 @@
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+
+import java.io.IOException;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.wb.swt.SWTResourceManager;
@@ -9,7 +12,9 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
+import DataStructures.Entry;
 import DataStructures.ToDoList;;
+
 
 
 public class mainMenu {
@@ -17,13 +22,9 @@ public class mainMenu {
 	 
 	protected Shell shlTodoList;
 	
-	/**
-	 * Launch the application.
-	 * @param args
-	 */
 	
 	public static void main(String[] args) {
-		ToDoList ToDoListTest = new ToDoList();
+		 ToDoList ToDoListTest = new ToDoList();
 		try {
 			mainMenu window = new mainMenu();
 			window.open(ToDoListTest);
@@ -31,6 +32,8 @@ public class mainMenu {
 			e.printStackTrace();
 		}
 	}
+
+	
 
 	/**
 	 * Open the window.
@@ -56,7 +59,7 @@ public class mainMenu {
 		
 		shlTodoList = new Shell();
 		shlTodoList.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
-		shlTodoList.setSize(600, 500);
+		shlTodoList.setSize(600, 550);
 		shlTodoList.setText("To-Do List");
 		
 		 Monitor primary = display.getPrimaryMonitor();
@@ -67,8 +70,7 @@ public class mainMenu {
 		int x = bounds.x + (bounds.width - rect.width) / 2;
 	    int y = bounds.y + (bounds.height - rect.height) / 2;
 	    
-	    System.out.println(x);
-	    System.out.println(y);
+
 
 	    shlTodoList.setLocation(x, y);
 
@@ -141,6 +143,23 @@ public class mainMenu {
 		buttonChangeItem.setBounds(215, 234, 170, 40);
 		
 		Button buttonRestoreList = new Button(shlTodoList, SWT.NONE);
+		buttonRestoreList.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				try {
+					
+					 ToDoList newList = ToDoList.load(); 
+					 ToDoListTest.startOver();
+					 for(Entry entry : newList.getEntries())
+					 {
+						 ToDoListTest.addEntry(entry); 
+					 }
+				} catch (ClassNotFoundException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		buttonRestoreList.setText("Restore Previous List");
 		buttonRestoreList.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
 		buttonRestoreList.setFont(SWTResourceManager.getFont("Arial", 13, SWT.NORMAL));
@@ -150,6 +169,12 @@ public class mainMenu {
 		buttonSaveCurrentList.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				try {
+					ToDoList.save(ToDoListTest);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 			}
 		});
@@ -176,6 +201,18 @@ public class mainMenu {
 		buttonPrintLog.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLUE));
 		buttonPrintLog.setFont(SWTResourceManager.getFont("Arial", 13, SWT.NORMAL));
 		buttonPrintLog.setBounds(215, 372, 170, 40);
+		
+		Button btnStartOver = new Button(shlTodoList, SWT.NONE);
+		btnStartOver.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				ToDoListTest.startOver();
+			}
+		});
+		btnStartOver.setText("Start Over");
+		btnStartOver.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
+		btnStartOver.setFont(SWTResourceManager.getFont("Arial", 13, SWT.BOLD));
+		btnStartOver.setBounds(216, 464, 167, 40);
 
 	}
 }
