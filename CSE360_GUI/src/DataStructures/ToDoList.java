@@ -55,7 +55,19 @@ public class ToDoList implements Serializable {
 
 	public void addEntry(Entry newEntry) {
 		entries.add(newEntry);
+		ensureUniquePriorities();
 		sortEntries();
+	}
+
+	private void ensureUniquePriorities() {
+		sortEntries(Sort.PRIORITY);
+		for (int i = 0; i < entries.size() - 1; i++) {
+			Entry entry = entries.get(i);
+			Entry next = entries.get(i + 1);
+			if (entry.getPriority() == next.getPriority()) {
+				next.setPriority(entry.getPriority() + 1);
+			}
+		}
 	}
 
 	public void removeEntryByIndex(int index) {
@@ -155,6 +167,10 @@ public class ToDoList implements Serializable {
 		Collections.sort(entries, new EntryComparator());
 	}
 	
+	private void sortEntries(Sort _sort) {
+		Collections.sort(entries, new EntryComparator(_sort));
+	}
+	
 	private void removeFinishedEntries() {
 		for (int i = 0; i < entries.size(); i++) {
 			if (entries.get(i).getProgress().getStatus() == Status.FINISHED) {
@@ -164,9 +180,19 @@ public class ToDoList implements Serializable {
 	}
 	
 	private class EntryComparator implements Comparator<Entry> {
+		Sort sortSort;
+		
+		public EntryComparator() {
+			sortSort = sort;
+		}
+		
+		public EntryComparator(Sort _sort) {
+			sortSort = _sort;
+		}
+		
 		@Override
 		public int compare(Entry first, Entry second) {
-			switch (sort) {
+			switch (sortSort) {
 			case DESC:
 				return first.getDescription().compareTo(second.getDescription());
 			case PRIORITY:
