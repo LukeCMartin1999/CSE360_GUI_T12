@@ -13,12 +13,15 @@ public class ToDoList implements Serializable {
 	
 	private List<Entry> entries;
 	private Sort sort;
+	private StringBuilder logBuilder;
 	private final static String SAVE_FILE_DIR = "ToDoSave.dat";
 	private static final long serialVersionUID = 1L;
 	
 	public ToDoList() {
 		entries = new ArrayList<Entry>();
 		sort = Sort.PRIORITY;
+		logBuilder = new StringBuilder();
+		log("List created");
 	}
 	
 	public static void save(ToDoList list) throws FileNotFoundException, IOException {
@@ -33,7 +36,6 @@ public class ToDoList implements Serializable {
 			if (out != null) out.close();
 		}
 	}
-
 
 	public static ToDoList load() throws ClassNotFoundException, IOException {
 		File file = new File(SAVE_FILE_DIR);
@@ -54,6 +56,7 @@ public class ToDoList implements Serializable {
 	}
 
 	public void addEntry(Entry newEntry) {
+		log("Added entry: " + newEntry.getDescription());
 		entries.add(newEntry);
 		ensureUniquePriorities();
 		sortEntries();
@@ -71,6 +74,7 @@ public class ToDoList implements Serializable {
 	}
 
 	public void removeEntryByIndex(int index) {
+		log("Removed entry: " + entries.get(index).getDescription());
 		entries.remove(index);
 	}
 	
@@ -98,6 +102,7 @@ public class ToDoList implements Serializable {
 	}
 	
 	public void deleteEntry(int index) {
+		log("Removed entry: " + entries.get(index).getDescription());
 		entries.remove(index);
 		sortEntries();
 	}
@@ -122,6 +127,7 @@ public class ToDoList implements Serializable {
 		return isNumber;
 		
 	}
+	
 	public boolean isDecriptionUnique(String description) {
 		boolean isUnique;
 		for (Entry entry : entries) {
@@ -138,11 +144,13 @@ public class ToDoList implements Serializable {
 	}
 
 	public void setSort(Sort sort) {
+		log("Sort criteria changed");
 		this.sort = sort;
 		sortEntries();
 	}
 	
 	public void startOver() {
+		log("List reset");
 		entries = new ArrayList<Entry>();
 		sort = Sort.PRIORITY;
 	}
@@ -161,6 +169,27 @@ public class ToDoList implements Serializable {
 		}
 		
 		return builder.toString();
+	}
+
+	public void printLog() {
+		PrintWriter out = null;
+		try {
+			out = new PrintWriter("log.txt");
+			out.print(logBuilder.toString());
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (out != null) out.close();
+		}
+	}
+	
+	public void log(String str) {
+		Date current = new Date();
+		logBuilder.append(current.getYear()).append("-")
+		.append(current.getMonth()).append("-")
+		.append(current.getDay()).append(": ")
+		.append(str).append("\n");
 	}
 	
 	private void sortEntries() {
@@ -198,7 +227,6 @@ public class ToDoList implements Serializable {
 			case PRIORITY:
 				return first.getPriority() - second.getPriority();
 			case DUE_DATE:
-				System.out.println("Due Dare Comp");
 				return first.getDueDate().compareTo(second.getDueDate());
 			case STATUS:
 				if (first.getProgress().getStatus() == second.getProgress().getStatus()) return 0;
