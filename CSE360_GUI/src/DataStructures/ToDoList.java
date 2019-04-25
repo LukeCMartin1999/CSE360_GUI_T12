@@ -96,11 +96,21 @@ public class ToDoList implements Serializable {
 		Entry currentEntry;
 		currentEntry = entries.get(index);
 		return currentEntry;
+		
+		String textwriter = currentEntry;
+		fileWriter = new FileWriter(file);
+		fileWriter.write(textwriter);
+		fileWriter.close();
 	}
 	
 	public void deleteEntry(int index) {
 		entries.remove(index);
 		sortEntries();
+		
+		String textwriter = deleteEntry;
+		fileWriter = new FileWriter(file);
+		fileWriter.write(textwriter);
+		fileWriter.close();
 	}
 	
 	public boolean isDateNumber(String date) {
@@ -141,11 +151,21 @@ public class ToDoList implements Serializable {
 	public void setSort(Sort sort) {
 		this.sort = sort;
 		sortEntries();
+		
+		String textwriter = setSort;
+		fileWriter = new FileWriter(file);
+		fileWriter.write(textwriter);
+		fileWriter.close();
 	}
 	
 	public void startOver() {
 		entries = new ArrayList<Entry>();
 		sort = Sort.PRIORITY;
+		
+		String textwriter = startOver;
+		fileWriter = new FileWriter(file);
+		fileWriter.write(textwriter);
+		fileWriter.close();
 	}
 	
 	@Override
