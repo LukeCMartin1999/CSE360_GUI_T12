@@ -219,7 +219,7 @@ public class ToDoList implements Serializable {
 			case PRIORITY:
 				return first.getPriority() - second.getPriority();
 			case DUE_DATE:
-				System.out.println("Due Dare Comp");
+				System.out.println("Due Date Comp");
 				return first.getDueDate().compareTo(second.getDueDate());
 			case STATUS:
 				if (first.getProgress().getStatus() == second.getProgress().getStatus()) return 0;
