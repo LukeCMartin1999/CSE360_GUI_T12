@@ -145,12 +145,17 @@ public class mainMenu {
 		buttonRestoreList.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				ToDoList loaded = null;
 				try {
+					loaded = ToDoList.load();
 					
-					 ToDoListTest.become(ToDoList.load());
 				} catch (ClassNotFoundException | IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				}
+				
+				if (loaded != null) {
+					ToDoListTest.become(loaded);
 				}
 			}
 		});
