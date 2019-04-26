@@ -241,23 +241,21 @@ public class itemChangesSettings {
 				date.setMonth(numMonth);
 				date.setDay(numDay);
 				
-				Progress newPrpgress = new Progress();
 				if(btnNotStarted.getSelection())
 				{
-					newPrpgress.setStatus(Status.NOT_STARTED);
+					newEntry.setStatus(Status.NOT_STARTED);
 				}
 				else if(btnFinished.getSelection())
 				{
-					newPrpgress.setStatus(Status.FINISHED);
+					newEntry.setStatus(Status.FINISHED);
 				}
 				else if(btnInProgress.getSelection())
 				{
-					newPrpgress.setStatus(Status.IN_PROGRESS);
+					newEntry.setStatus(Status.IN_PROGRESS);
 				}
 				
 
 				newEntry.setDueDate(date);
-				newEntry.setProgress(newPrpgress);
 				
 				List.addEntry(newEntry);
 				
