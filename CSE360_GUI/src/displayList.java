@@ -105,30 +105,28 @@ public class displayList {
 		
 		List displayList = new List(shell, SWT.BORDER);
 		displayList.setBounds(38, 114, 523, 238);
-		String builder = new String();
+		String str = new String();
 		for(Entry entry : List.getEntries())
 		{
-		builder = "";
-		builder = ("Priority: ") + entry.getPriority();
-		builder = builder + ("   Due: ") + (entry.getDueDate().getMonth()) + ("/")
-			+ (entry.getDueDate().getDay())+ ("/")
-			+ (entry.getDueDate().getYear());
-		// TODO
-		builder = builder + ("   ");
-		if(entry.getProgress().getStatus() == Status.NOT_STARTED) 
-		{
-			builder = builder + "Status: Not Started";	
-		}
-		else if(entry.getProgress().getStatus() == Status.IN_PROGRESS)
-		{
-			builder = builder + "Status: In Progress";
-		}
-		else if (entry.getProgress().getStatus() == Status.FINISHED)
-		{
-			builder = builder + "Status: Finished";
-		}
-		builder = builder + ("   Desc: ") + entry.getDescription();
-		displayList.add(builder);
+			str = "" + entry.getPriority() + ": "
+					+ ("Due ") + (entry.getDueDate().getMonth()) + ("/")
+					+ (entry.getDueDate().getDay())+ ("/")
+					+ (entry.getDueDate().getYear())
+					+ (", ");
+			if(entry.getProgress().getStatus() == Status.NOT_STARTED) 
+			{
+				str = str + "Not Started";	
+			}
+			else if(entry.getProgress().getStatus() == Status.IN_PROGRESS)
+			{
+				str = str + "In Progress";
+			}
+			else if (entry.getProgress().getStatus() == Status.FINISHED)
+			{
+				str = str + "Finished";
+			}
+			str = str + (", Desc: ") + entry.getDescription();
+			displayList.add(str);
 		}
 		
 		

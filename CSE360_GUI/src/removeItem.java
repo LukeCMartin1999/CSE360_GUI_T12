@@ -57,32 +57,29 @@ public class removeItem {
 		
 		List removeList = new List(shell, SWT.BORDER);
 		removeList.setBounds(35, 110, 530, 220);
-		String builder = new String();
+		String str = new String();
 		
 		for(Entry entry : List.getEntries())
 		{
-		builder = "";
-		builder = ("Priority: ") + entry.getPriority();
-		builder = builder + ("   Due: ") + (entry.getDueDate().getMonth()) + ("/")
-			+ (entry.getDueDate().getDay())+ ("/")
-			+ (entry.getDueDate().getYear());
-		
-
-		builder = builder + ("   ");
-		if(entry.getProgress().getStatus() == Status.NOT_STARTED) 
-		{
-			builder = builder + "Status: Not Started";	
-		}
-		else if(entry.getProgress().getStatus() == Status.IN_PROGRESS)
-		{
-			builder = builder + "Status: In Progress";
-		}
-		else if (entry.getProgress().getStatus() == Status.FINISHED)
-		{
-			builder = builder + "Status: Finished";
-		}
-		builder = builder + ("   Desc: ") + entry.getDescription();
-		removeList.add(builder);
+			str = "" + entry.getPriority() + ": "
+					+ ("Due ") + (entry.getDueDate().getMonth()) + ("/")
+					+ (entry.getDueDate().getDay())+ ("/")
+					+ (entry.getDueDate().getYear())
+					+ (", ");
+			if(entry.getProgress().getStatus() == Status.NOT_STARTED) 
+			{
+				str = str + "Not Started";	
+			}
+			else if(entry.getProgress().getStatus() == Status.IN_PROGRESS)
+			{
+				str = str + "In Progress";
+			}
+			else if (entry.getProgress().getStatus() == Status.FINISHED)
+			{
+				str = str + "Finished";
+			}
+			str = str + (", Desc: ") + entry.getDescription();
+			removeList.add(str);
 		}
 		
 		Button buttonExit = new Button(shell, SWT.NONE);
