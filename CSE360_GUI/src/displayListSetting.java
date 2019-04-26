@@ -61,8 +61,6 @@ public class displayListSetting {
 		
 		
 	    
-	    System.out.println(x);
-	    System.out.println(y);
 	    shell.setLocation(x, y);
 		
 		Button buttonPriority = new Button(shell, SWT.NONE);

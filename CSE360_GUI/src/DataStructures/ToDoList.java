@@ -35,7 +35,6 @@ public class ToDoList implements Serializable {
 		File file = new File(SAVE_FILE_DIR);
 		ObjectOutputStream out = null;
 		try {
-			System.out.println("Here Save");
 			out = new ObjectOutputStream(new FileOutputStream(file));
 			out.writeObject(list);
 		}
@@ -48,7 +47,6 @@ public class ToDoList implements Serializable {
 		File file = new File(SAVE_FILE_DIR);
 		ObjectInputStream in = null;
 		try {
-			System.out.println("Here Load");
 			in = new ObjectInputStream(new FileInputStream(file));
 			return (ToDoList) in.readObject();
 		}

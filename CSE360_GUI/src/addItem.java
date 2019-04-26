@@ -79,8 +79,6 @@ public class addItem {
 		
 		
 	    
-	    System.out.println(x);
-	    System.out.println(y);
 	    shell.setLocation(x, y);
 		
 		Label lblAddItem = new Label(shell, SWT.NONE);

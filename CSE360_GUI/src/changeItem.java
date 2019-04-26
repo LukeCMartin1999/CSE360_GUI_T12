@@ -57,13 +57,8 @@ public class changeItem {
 		int x = bounds.x + (bounds.width - rect.width) / 2;
 	    int y = bounds.y + (bounds.height - rect.height) / 2;
 	    
-	    System.out.println(x);
-	    System.out.println(y);
 	    shell.setLocation(x, y);
 		
-		
-	    System.out.println(x);
-	    System.out.println(y);
 	    shell.setLocation(x, y);
 		
 		Label lblNewLabel = new Label(shell, SWT.NONE);
