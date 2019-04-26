@@ -257,13 +257,6 @@ public class addItem {
 				
 
 				newEntry.setDueDate(date);
-
-				Progress newPrpgress = new Progress();
-				
-				newPrpgress.setStatus(Status.NOT_STARTED);
-
-				newEntry.setDueDate(date);
-				newEntry.setProgress(newPrpgress);
 				
 
 				List.addEntry(newEntry);
