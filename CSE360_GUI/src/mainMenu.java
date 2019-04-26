@@ -148,12 +148,7 @@ public class mainMenu {
 			public void widgetSelected(SelectionEvent e) {
 				try {
 					
-					 ToDoList newList = ToDoList.load(); 
-					 ToDoListTest.startOver();
-					 for(Entry entry : newList.getEntries())
-					 {
-						 ToDoListTest.addEntry(entry); 
-					 }
+					 ToDoListTest.become(ToDoList.load());
 				} catch (ClassNotFoundException | IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

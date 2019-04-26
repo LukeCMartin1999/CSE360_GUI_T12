@@ -24,6 +24,13 @@ public class ToDoList implements Serializable {
 		log("List created");
 	}
 	
+	public void become(ToDoList other) {
+		this.startOver();
+		this.entries = other.entries;
+		this.sort = other.sort;
+		this.logBuilder = other.logBuilder;
+	}
+	
 	public static void save(ToDoList list) throws FileNotFoundException, IOException {
 		File file = new File(SAVE_FILE_DIR);
 		ObjectOutputStream out = null;
