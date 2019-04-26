@@ -60,6 +60,7 @@ public class ToDoList implements Serializable {
 		entries.add(newEntry);
 		ensureUniquePriorities();
 		sortEntries();
+		newEntry.setList(this);
 	}
 
 	private void ensureUniquePriorities() {
