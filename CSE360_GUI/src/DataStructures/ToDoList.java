@@ -26,9 +26,19 @@ public class ToDoList implements Serializable {
 	
 	public void become(ToDoList other) {
 		this.startOver();
-		this.entries = other.entries;
+		if (other.entries != null) {
+			this.entries = other.entries;
+		}
+		else {
+			this.entries = new ArrayList<Entry>();
+		}
 		this.sort = other.sort;
-		this.logBuilder = other.logBuilder;
+		if (other.logBuilder != null) {
+			this.logBuilder = other.logBuilder;
+		}
+		else {
+			this.logBuilder = new StringBuilder("");
+		}
 	}
 	
 	public static void save(ToDoList list) throws FileNotFoundException, IOException {
@@ -61,7 +71,9 @@ public class ToDoList implements Serializable {
 	}
 
 	public void addEntry(Entry newEntry) {
-		log("Added entry: " + newEntry.getDescription());
+		if (newEntry.getDescription() != null) {
+			log("Added entry: " + newEntry.getDescription());
+		}
 		entries.add(newEntry);
 		ensureUniquePriorities();
 		sortEntries();
