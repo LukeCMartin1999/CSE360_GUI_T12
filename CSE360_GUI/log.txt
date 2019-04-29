@@ -1,0 +1,19 @@
+2019-4-25: List created
+2019-4-25: Added entry: a
+2019-4-25: Added entry: b
+2019-4-25: Added entry: c
+2019-4-25: Removed entry: c
+2019-4-25: Added entry: Buy Groceries
+2019-4-25: Removed entry: a
+2019-4-25: Added entry: Do homework
+2019-4-25: Removed entry: b
+2019-4-25: Added entry: Build treehouse
+2019-4-25: Sort criteria changed
+2019-4-25: Sort criteria changed
+2019-4-25: Sort criteria changed
+2019-4-25: Sort criteria changed
+2019-4-25: Sort criteria changed
+2019-4-25: Added entry: Dig ditch
+2019-4-25: Sort criteria changed
+2019-4-25: Sort criteria changed
+2019-4-25: Sort criteria changed

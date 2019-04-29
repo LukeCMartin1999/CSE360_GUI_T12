@@ -66,9 +66,9 @@ public class displayList {
 		
 		
 		Label lblNewLabel = new Label(shell, SWT.NONE);
-		lblNewLabel.setFont(SWTResourceManager.getFont("Arial", 18, SWT.BOLD));
-		lblNewLabel.setBounds(244, 52, 111, 30);
-		lblNewLabel.setText("Display List ");
+		lblNewLabel.setFont(SWTResourceManager.getFont("Arial", 14, SWT.BOLD));
+		lblNewLabel.setBounds(254, 52, 111, 30);
+		lblNewLabel.setText("List");
 		
 
 

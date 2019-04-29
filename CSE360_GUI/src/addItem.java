@@ -9,9 +9,6 @@ import DataStructures.Date;
 import DataStructures.Entry;
 import DataStructures.ToDoList;
 
-import DataStructures.Progress;
-import DataStructures.Progress.Status;
-
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -82,34 +79,33 @@ public class addItem {
 	    shell.setLocation(x, y);
 		
 		Label lblAddItem = new Label(shell, SWT.NONE);
-		lblAddItem.setFont(SWTResourceManager.getFont("Arial", 18, SWT.BOLD));
-		lblAddItem.setBounds(230, 10, 140, 21);
-		lblAddItem.setText("Add Item to List");
+		lblAddItem.setFont(SWTResourceManager.getFont("Arial", 14, SWT.BOLD));
+		lblAddItem.setBounds(243, 10, 140, 30);
+		lblAddItem.setText("Add Item");
 		
 		Label lblItemDescription = new Label(shell, SWT.NONE);
 		lblItemDescription.setText("Item Description");
-		lblItemDescription.setFont(SWTResourceManager.getFont("Arial", 14, SWT.BOLD));
-		lblItemDescription.setBounds(243, 55, 114, 21);
+		lblItemDescription.setFont(SWTResourceManager.getFont("Arial", 10, SWT.BOLD));
+		lblItemDescription.setBounds(232, 55, 200, 26);
 		
 		textItemDescription = new Text(shell, SWT.BORDER);
-		textItemDescription.setBounds(243, 82, 114, 22);
+		textItemDescription.setBounds(243, 82, 114, 27);
 		
 		lblPriority = new Label(shell, SWT.NONE);
-		lblPriority.setFont(SWTResourceManager.getFont("Arial", 14, SWT.BOLD));
-		lblPriority.setBounds(270, 146, 59, 21);
+		lblPriority.setFont(SWTResourceManager.getFont("Arial", 10, SWT.BOLD));
+		lblPriority.setBounds(265, 136, 90, 21);
 		lblPriority.setText("Priority");
 		
 		textPriority = new Text(shell, SWT.BORDER);
-		textPriority.setBounds(243, 173, 114, 22);
+		textPriority.setBounds(243, 163, 114, 27);
 		
 		labelDuDate = new Label(shell, SWT.NONE);
 		labelDuDate.setText("Due Date");
-		labelDuDate.setFont(SWTResourceManager.getFont("Arial", 14, SWT.BOLD));
-		labelDuDate.setBounds(267, 229, 65, 21);
+		labelDuDate.setFont(SWTResourceManager.getFont("Arial", 10, SWT.BOLD));
+		labelDuDate.setBounds(257, 229, 120, 21);
 		
 		textMonth = new Text(shell, SWT.BORDER);
-		textMonth.setBounds(214, 284, 50, 19);
-		textMonth.setBounds(214, 284, 50, 21);
+		textMonth.setBounds(214, 284, 50, 27);
 		
 		Button buttonExit = new Button(shell, SWT.NONE);
 		buttonExit.addSelectionListener(new SelectionAdapter() {
@@ -133,41 +129,41 @@ public class addItem {
 		buttonAdd.setBounds(241, 341, 118, 34);
 		
 		labelMonth = new Label(shell, SWT.NONE);
-		labelMonth.setText("Month ");
-		labelMonth.setFont(SWTResourceManager.getFont("Arial", 12, SWT.NORMAL));
+		labelMonth.setText("Month");
+		labelMonth.setFont(SWTResourceManager.getFont("Arial", 8, SWT.NORMAL));
 		labelMonth.setBounds(219, 260, 50, 21);
 		
 		textDay = new Text(shell, SWT.BORDER);
 
 		textDay.setBounds(275, 284, 50, 19);
 
-		textDay.setBounds(275, 284, 50, 21);
+		textDay.setBounds(275, 284, 50, 27);
 		
 		labelDay = new Label(shell, SWT.NONE);
 		labelDay.setText("Day");
-		labelDay.setFont(SWTResourceManager.getFont("Arial", 12, SWT.NORMAL));
+		labelDay.setFont(SWTResourceManager.getFont("Arial", 8, SWT.NORMAL));
 		labelDay.setBounds(285, 260, 30, 21);
 		
 		textYear = new Text(shell, SWT.BORDER);
 
 		textYear.setBounds(338, 284, 50, 19);
 
-		textYear.setBounds(338, 284, 50, 21);
+		textYear.setBounds(338, 284, 50, 27);
 
 		
 		labelYear = new Label(shell, SWT.NONE);
 		labelYear.setText("Year");
-		labelYear.setFont(SWTResourceManager.getFont("Arial", 12, SWT.NORMAL));
+		labelYear.setFont(SWTResourceManager.getFont("Arial", 8, SWT.NORMAL));
 		labelYear.setBounds(346, 260, 30, 21);
 		
 		labelSlash1 = new Label(shell, SWT.NONE);
 		labelSlash1.setText("/");
-		labelSlash1.setFont(SWTResourceManager.getFont("Arial", 18, SWT.BOLD));
+		labelSlash1.setFont(SWTResourceManager.getFont("Arial", 12, SWT.BOLD));
 		labelSlash1.setBounds(266, 283, 8, 21);
 		
 		labelSlaph2 = new Label(shell, SWT.NONE);
 		labelSlaph2.setText("/");
-		labelSlaph2.setFont(SWTResourceManager.getFont("Arial", 18, SWT.BOLD));
+		labelSlaph2.setFont(SWTResourceManager.getFont("Arial", 12, SWT.BOLD));
 		labelSlaph2.setBounds(327, 283, 15, 21);
 
 
@@ -210,7 +206,7 @@ public class addItem {
 					Label labelUniqueDescription = new Label(shell, SWT.NONE);
 					labelUniqueDescription.setAlignment(SWT.CENTER);
 					labelUniqueDescription.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-					labelUniqueDescription.setBounds(207, 106, 186, 14);
+					labelUniqueDescription.setBounds(173, 106, 246, 19);
 					labelUniqueDescription.setText("Please Enter Unique Description");
 					
 				}
@@ -219,7 +215,7 @@ public class addItem {
 					labelEnterNumber = new Label(shell, SWT.NONE);
 					labelEnterNumber.setAlignment(SWT.CENTER);
 					labelEnterNumber.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-					labelEnterNumber.setBounds(230, 197, 140, 14);
+					labelEnterNumber.setBounds(210, 187, 180, 20);
 					labelEnterNumber.setText("Please Enter a Number");
 
 				}
@@ -229,7 +225,7 @@ public class addItem {
 					labelFormateDate = new Label(shell, SWT.NONE);
 					labelFormateDate.setAlignment(SWT.CENTER);
 					labelFormateDate.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-					labelFormateDate.setBounds(168, 306, 264, 14);
+					labelFormateDate.setBounds(148, 309, 304, 20);
 					labelFormateDate.setText("Enter Date as MM/DD/YY Example: 04/14/99");
 					return;
 				}

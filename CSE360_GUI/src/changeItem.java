@@ -62,8 +62,8 @@ public class changeItem {
 	    shell.setLocation(x, y);
 		
 		Label lblNewLabel = new Label(shell, SWT.NONE);
-		lblNewLabel.setFont(SWTResourceManager.getFont("Arial", 18, SWT.BOLD));
-		lblNewLabel.setBounds(243, 38, 113, 28);
+		lblNewLabel.setFont(SWTResourceManager.getFont("Arial", 14, SWT.BOLD));
+		lblNewLabel.setBounds(223, 38, 153, 33);
 		lblNewLabel.setText("Change Item");
 		
 		List changeList = new List(shell, SWT.BORDER);
@@ -117,7 +117,7 @@ public class changeItem {
 					Label labelSelect = new Label(shell, SWT.NONE);
 					labelSelect.setAlignment(SWT.CENTER);
 					labelSelect.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-					labelSelect.setBounds(214, 72, 171, 14);
+					labelSelect.setBounds(214, 72, 171, 16);
 					labelSelect.setText("Please Select an Item First");
 					return;
 					
